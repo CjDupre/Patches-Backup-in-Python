@@ -40,7 +40,7 @@ def backup_new_patches(main_ssd_path, backup_ssd_path):
 if __name__ == "__main__":
     # Specify the paths to the main SSD and backup SSD
     main_ssd_path = "../../Desktop"
-    backup_ssd_path = ".././Patch Python Output"
+    backup_ssd_path = "../../../.././Volumes/ExFAT SSD/Patches Backup"
 
     # Backup new patches
     backup_new_patches(main_ssd_path, backup_ssd_path)
