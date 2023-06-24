@@ -12,7 +12,6 @@ def calculate_hash(file_path):
 
 def backup_new_patches(main_ssd_path, backup_ssd_path):
     """Backup new .nmsv synth patches from the main SSD to the backup SSD."""
-    main_patches = []
     backup_patches = []
     new_patches = []
 
@@ -25,14 +24,12 @@ def backup_new_patches(main_ssd_path, backup_ssd_path):
     # Check for new patches in the main SSD
     for root, dirs, files in os.walk(main_ssd_path):
         for file in files:
-            if file.endswith(".nmsv"):
-                main_patches.append(file)
-                if file not in backup_patches:
-                    new_patches.append(file)
+            if file.endswith(".nmsv") and file not in backup_patches:
+                new_patches.append(os.path.join(root, file))
 
     # Backup new patches to the backup SSD
-    for patch in new_patches:
-        patch_path = os.path.join(main_ssd_path, patch)
+    for patch_path in new_patches:
+        patch = os.path.basename(patch_path)
         backup_path = os.path.join(backup_ssd_path, patch)
         shutil.copy2(patch_path, backup_path)
         print(f"Backed up {patch} to {backup_path}")
