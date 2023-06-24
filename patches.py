@@ -2,6 +2,7 @@ import os
 import shutil
 import hashlib
 
+
 def calculate_hash(file_path):
     """Calculate the MD5 hash of a file."""
     hash_md5 = hashlib.md5()
@@ -9,6 +10,7 @@ def calculate_hash(file_path):
         for chunk in iter(lambda: f.read(4096), b""):
             hash_md5.update(chunk)
     return hash_md5.hexdigest()
+
 
 def backup_new_patches(main_ssd_path, backup_ssd_path):
     """Backup new .nmsv synth patches from the main SSD to the backup SSD."""
@@ -34,9 +36,10 @@ def backup_new_patches(main_ssd_path, backup_ssd_path):
         shutil.copy2(patch_path, backup_path)
         print(f"Backed up {patch} to {backup_path}")
 
+
 if __name__ == "__main__":
     # Specify the paths to the main SSD and backup SSD
-    main_ssd_path = ".././may 2023 patches"
+    main_ssd_path = "../../Desktop"
     backup_ssd_path = ".././Patch Python Output"
 
     # Backup new patches
